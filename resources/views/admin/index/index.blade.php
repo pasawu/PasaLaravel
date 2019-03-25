@@ -1,25 +1,4 @@
-@extends('layout.base')
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <title>后台管理系统</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-
-    <!--[if lt IE 9]>
-    <meta http-equiv="refresh" content="0;ie.html"/>
-    <![endif]-->
-
-    <link rel="shortcut icon" href="favicon.ico">
-    <link href="{{asset('/static/admin/css')}}/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="{{asset('/static/admin/css')}}/font-awesome.min.css?v=4.4.0" rel="stylesheet">
-    <link href="{{asset('/static/admin/css')}}/animate.min.css" rel="stylesheet">
-    <link href="{{asset('/static/admin/css')}}/style.min.css?v=4.1.0" rel="stylesheet">
-</head>
-
+@include('layout.top')
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
 <div id="wrapper">
     <!--左侧导航开始-->

@@ -49,7 +49,6 @@ class ProfileController extends AdminBaseController
     //图片上传
     public function upload()
     {
-
         $file = $this->request->file('file');
         if ($file->isValid()) {
             $entension   = $file->getClientOriginalExtension();//获得上传文件后缀
@@ -57,7 +56,20 @@ class ProfileController extends AdminBaseController
             $path        = $file->move(base_path() . '/public/uploads', $newName);//上传文件到服务器指定目录，并重命名【备注：base_path(）指的是该程序根目录】
             $filepath    = '/uploads/' . $newName; //给用户一个相对路径
             $data['src'] = $filepath;
-            return $this->jump([FAILED, MES_FAILED, $data]);
+            return $this->jump([SUCCESS, MES_SUCCESS, $data]);
+        }
+    }
+    //图片上传
+    public function wangEditorUpload()
+    {
+        $file = $this->request->file('file');
+        if ($file->isValid()) {
+            $entension   = $file->getClientOriginalExtension();//获得上传文件后缀
+            $newName     = date('YmdHis') . mt_rand(1000, 9999) . '.' . $entension;
+            $path        = $file->move(base_path() . '/public/uploads', $newName);//上传文件到服务器指定目录，并重命名【备注：base_path(）指的是该程序根目录】
+            $filepath    = '/uploads/' . $newName; //给用户一个相对路径
+            $data[] = $filepath;
+            return response()->json(['errno' => 0, 'msg' => MES_SUCCESS, 'data' => $data]);
         }
     }
 }

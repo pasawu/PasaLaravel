@@ -21,5 +21,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
         'http://www.pasalaravel.com/admin/profile/upload',
+        'http://www.pasalaravel.com/admin/profile/wangEditorUpload',
     ];
 }

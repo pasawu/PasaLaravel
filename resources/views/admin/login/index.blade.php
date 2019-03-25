@@ -1,4 +1,4 @@
-@extends('layout.base')
+@extends('layout.top')
 <!DOCTYPE html>
 <html lang="en">
 

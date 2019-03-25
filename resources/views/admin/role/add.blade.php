@@ -1,10 +1,10 @@
-@extends('layout.base')
+@extends('layout.top')
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>添加管理员</title>
+    <title>添加角色</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="{{asset('/static/admin/css')}}/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="{{asset('/static/admin/css')}}/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -18,7 +18,7 @@
         <div class="col-sm-8">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>添加管理员</h5>
+                    <h5>添加角色</h5>
                 </div>
                 <div class="ibox-content">
                     <form class="form-horizontal m-t" id="commentForm" method="post" action="{{url('admin/role/add')}}">
@@ -76,7 +76,7 @@
     }
     $(document).ready(function(){
         $(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",});
-        // 添加管理员
+        // 添加角色
         var options = {
             beforeSubmit:showStart,
             success:showSuccess

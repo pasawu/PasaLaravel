@@ -1,4 +1,4 @@
-@extends('layout.base')
+@extends('layout.top')
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>

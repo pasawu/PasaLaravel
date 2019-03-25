@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>编辑角色</title>
+    <title>编辑用户</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="{{asset('/static/admin/css')}}/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="{{asset('/static/admin/css')}}/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -18,25 +18,31 @@
         <div class="col-sm-8">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>编辑角色</h5>
+                    <h5>编辑用户</h5>
                 </div>
                 <div class="ibox-content">
-                    <form class="form-horizontal m-t" id="commentForm" method="post" action="{{url('admin/role/edit',['id'=>$data['id']])}}">
+                    <form class="form-horizontal m-t" id="commentForm" method="post" action="{{url('admin/user/edit',['id'=>$data['id']])}}">
 
                         <input type="hidden" name="id" value="{{$data['id']}}">
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">角色名称</label>
+                            <label class="col-sm-3 control-label">用户手机</label>
                             <div class="input-group col-sm-4">
-                                <input id="username" type="text" class="form-control" value="{{$data['role_name']}}" name="role_name" required="" aria-required="true">
+                                <input type="number" class="form-control" value="{{$data['mobile']}}" name="mobile" required=""
+                                       aria-required="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">密码</label>
+                            <div class="input-group col-sm-4">
+                                <input type="password" class="form-control" name="password"
+                                       aria-required="true">
                             </div>
                         </div>
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <div class="col-sm-4 col-sm-offset-6">
-                                <!--<input type="button" value="提交" class="btn btn-primary" id="postform"/>-->
-                                <button class="btn btn-primary" type="submit">提交</button>
-                            </div>
+                            <a class="btn btn-primary col-sm-1 col-sm-offset-3" href="javascript:history.go(-1)">返回</a>
+                            <button class="btn btn-primary col-sm-1 col-sm-offset-2" type="submit">提交</button>
                         </div>
 
                     </form>
@@ -81,7 +87,7 @@
     $(document).ready(function(){
         $(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",});
 
-        // 编辑角色
+        // 编辑用户
         var options = {
             beforeSubmit:showStart,
             success:showSuccess

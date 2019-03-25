@@ -1,38 +1,24 @@
 @extends('layout.top')
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>管理员列表</title>
-    <link rel="shortcut icon" href="favicon.ico">
-    <link href="{{asset('/static/admin/css')}}/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="{{asset('/static/admin/css')}}/font-awesome.min.css?v=4.4.0" rel="stylesheet">
-    <link href="{{asset('/static/admin/css')}}/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
-    <link href="{{asset('/static/admin/css')}}/animate.min.css" rel="stylesheet">
-    <link href="{{asset('/static/admin/css')}}/style.min.css?v=4.1.0" rel="stylesheet">
-    <link href="{{asset('/static/admin/css')}}/plugins/sweetalert/sweetalert.css" rel="stylesheet">
-</head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
     <!-- Panel Other -->
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>管理员列表</h5>
+            <h5>文章列表</h5>
         </div>
         <div class="ibox-content">
             <div class="form-group clearfix col-sm-1">
-                @if(authCheck('admin/admin/add'))
-                <a href="{{url('admin/admin/add')}}">
-                    <button class="btn btn-outline btn-primary" type="button">添加管理员</button>
+                @if(authCheck('admin/articles/add'))
+                <a href="{{url('admin/articles/add')}}">
+                    <button class="btn btn-outline btn-primary" type="button">添加文章</button>
                 </a>
                 @endif
             </div>
             <!--搜索框开始-->
-            <form id='commentForm' role="form" method="post" class="form-inline pull-right">
+            <form id='commentForm' articles="form" method="post" class="form-inline pull-right">
                 <div class="content clearfix m-b">
                     <div class="form-group">
-                        <label>管理员名称：</label>
+                        <label>文章名称：</label>
                         <input type="text" class="form-control" id="keyword" name="keyword">
                     </div>
                     <div class="form-group">
@@ -47,14 +33,10 @@
                 <div class="example">
                     <table id="cusTable">
                         <thead>
-                        <th data-field="id">管理员ID</th>
-                        <th data-field="user_name">管理员名称</th>
-                        <th data-field="role_name">管理员角色</th>
-                        <th data-field="login_times">登录次数</th>
-                        <th data-field="last_login_ip">上次登录ip</th>
-                        <th data-field="last_login_time">上次登录时间</th>
-                        <th data-field="real_name">真是姓名</th>
-                        <th data-field="status">状态</th>
+                        <th data-field="id">ID</th>
+                        <th data-field="title">文章标题</th>
+                        <th data-field="description">文章描述</th>
+                        <th data-field="image">文章缩略图</th>
                         <th data-field="operate">操作</th>
                         </thead>
                     </table>
@@ -66,17 +48,10 @@
     </div>
 </div>
 <!-- End Panel Other -->
-</div>
+@extends('layout.js')
+
 <script src="{{asset('/static/admin/js')}}/jquery.min.js?v=2.1.4"></script>
-<script src="{{asset('/static/admin/js')}}/bootstrap.min.js?v=3.3.6"></script>
-<script src="{{asset('/static/admin/js')}}/content.min.js?v=1.0.0"></script>
-<script src="{{asset('/static/admin/js')}}/plugins/bootstrap-table/bootstrap-table.min.js"></script>
-<script src="{{asset('/static/admin/js')}}/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
-<script src="{{asset('/static/admin/js')}}/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
-<script src="{{asset('/static/admin/js')}}/plugins/suggest/bootstrap-suggest.min.js"></script>
-<script src="{{asset('/static/admin/js')}}/plugins/layer/laydate/laydate.js"></script>
-<script src="{{asset('/static/admin/js')}}/plugins/sweetalert/sweetalert.min.js"></script>
-<script src="{{asset('/static/admin/js')}}/plugins/layer/layer.min.js"></script>
+
 <script type="text/javascript">
     function initTable() {
         //先销毁表格
@@ -126,9 +101,9 @@
     });
 
     function del(id) {
-        layer.confirm('确认删除此管理员?', {icon: 3, title: '提示'}, function (index) {
+        layer.confirm('确认删除此文章?', {icon: 3, title: '提示'}, function (index) {
             //do something
-            $.getJSON("{{url('admin/admin/delete')}}"+'/'+id, function (res) {
+            $.getJSON("{{url('admin/articles/delete')}}"+'/'+id, function (res) {
                 if (1 == res.code) {
                     layer.alert(res.msg, {title: '友情提示', icon: 1, closeBtn: 0}, function () {
                         initTable();

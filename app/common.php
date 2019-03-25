@@ -48,15 +48,15 @@ function authCheck($rule)
             return true;
         }
     }
-    if(empty(session('rule'))){
+    if (empty(session('rule'))) {
         return false;
     }
     $_rule = session('rule');
-    if(!is_array($_rule)){
-        $_rule = explode(',',$_rule);
+    if (!is_array($_rule)) {
+        $_rule = explode(',', $_rule);
     }
-    $rule = explode('/', $rule)['1']."/".explode('/', $rule)['2'];
-    if(in_array($rule, Cache::get(session('role_id')))){
+    $rule = explode('/', $rule)['1'] . "/" . explode('/', $rule)['2'];
+    if (in_array($rule, Cache::get(session('role_id')))) {
         return true;
     }
 
@@ -144,4 +144,48 @@ function getTree($pInfo, $spread = true)
     unset($res);
 
     return $tree;
+}
+
+/**
+ *  编辑器内容
+ * @param int $id 编辑器id名称，与name同名
+ * @param string $value 编辑器内容
+ * @param string $type 编辑器工具栏
+ * @param string $height 编辑器高度
+ */
+function showEditor($id, $value = '', $type = 'default', $height = "300px")
+{
+    echo '<div id="div" height="200px;">' . $value . '</div><textarea style="display:none;" id="' . $id . '"  name="' . $id . '" style="width:100%; height:200px;"></textarea>';
+    echo '<script type="text/javascript" src="/static/wangEditor-3.1.1/release/wangEditor.js"></script>
+    <script>
+        var E = window.wangEditor;
+        var editor  = new E("#div");
+        var $text1  = $("#' . $id . '");
+        var type    = "' . $type . '";
+        editor.customConfig.onchange = function (html) {
+            // 监控变化，同步更新到 textarea
+            $text1.val(html)
+        }
+        //自定义高度设置 - By  DIY
+        editor.customConfig.height= "' . $height . '";
+        // 配置服务器端地址
+        editor.customConfig.uploadFileName = "file";
+        editor.customConfig.uploadImgServer = "/admin/profile/wangEditorUpload";
+        // 自定义菜单配置
+        if(type == "simple"){
+            editor.customConfig.menus = [
+                "head",
+                "bold",
+                "italic",
+                "underline",
+                "foreColor",
+                "code",
+                "quote",
+                "code"
+            ];
+        }
+        editor.create();
+        // 初始化 textarea 的值
+        $text1.val(editor.txt.html())
+</script>';
 }

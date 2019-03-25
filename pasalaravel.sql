@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2019-03-18 14:02:39
+Date: 2019-03-25 16:43:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,17 +21,19 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `official_user`;
 CREATE TABLE `official_user` (
   `id` int(255) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
-  `mobile` int(11) DEFAULT NULL COMMENT '手机号码',
+  `mobile` varchar(11) DEFAULT NULL COMMENT '手机号码',
   `password` varchar(255) DEFAULT NULL COMMENT '密码',
   `created_at` varchar(255) DEFAULT NULL,
   `updated_at` varchar(255) DEFAULT NULL,
   `deleted_at` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of official_user
 -- ----------------------------
+INSERT INTO `official_user` VALUES ('1', '18111111111', 'b59c67bf196a4758191e42f76670ceba', '1552890335', '1553503357', null);
+INSERT INTO `official_user` VALUES ('2', '18888888888', 'c4ca4238a0b923820dcc509a6f75849b', '1552890341', '1553503347', null);
 
 -- ----------------------------
 -- Table structure for pasa_admin
@@ -57,7 +59,7 @@ CREATE TABLE `pasa_admin` (
 -- ----------------------------
 -- Records of pasa_admin
 -- ----------------------------
-INSERT INTO `pasa_admin` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '/uploads/201903180329271036.JPG', '22', '127.0.0.1', '1552880539', 'admin', '1', '1', null, '1552880539', null);
+INSERT INTO `pasa_admin` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '/uploads/201903180329271036.JPG', '32', '127.0.0.1', '1553503216', 'admin', '1', '1', null, '1553503216', null);
 INSERT INTO `pasa_admin` VALUES ('2', '1', '64d07a30f56ef59c79943ce26532c9e3', '/uploads/201903171035096569.JPG', '7', '127.0.0.1', '1552821020', '1', '1', '1', null, '1552821020', null);
 INSERT INTO `pasa_admin` VALUES ('3', 'pasawu', 'd36ddfa2bf8c74f90bbd6747f152d200', '/uploads/201903171035096569.JPG', '6', '127.0.0.1', '1552877639', '123456', '1', '2', null, '1552877639', null);
 INSERT INTO `pasa_admin` VALUES ('4', '1', '1', '/uploads/201903171035096569.JPG', '0', '', '0', '1', '0', '1', '1552809053', '1552809053', '1552720085');
@@ -89,23 +91,20 @@ INSERT INTO `pasa_admin` VALUES ('25', '1', '', '/uploads/201903171035096569.JPG
 DROP TABLE IF EXISTS `pasa_articles`;
 CREATE TABLE `pasa_articles` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '文章id',
-  `title` varchar(155) NOT NULL COMMENT '文章标题',
-  `description` varchar(255) NOT NULL COMMENT '文章描述',
-  `keywords` varchar(155) NOT NULL COMMENT '文章关键字',
-  `thumbnail` varchar(255) NOT NULL COMMENT '文章缩略图',
+  `title` varchar(155) DEFAULT NULL COMMENT '文章标题',
+  `description` varchar(255) DEFAULT NULL COMMENT '文章描述',
+  `image` varchar(255) DEFAULT NULL COMMENT '文章缩略图',
   `content` text NOT NULL COMMENT '文章内容',
-  `add_time` datetime NOT NULL COMMENT '发布时间',
+  `created_at` varchar(255) DEFAULT NULL,
+  `updated_at` varchar(255) DEFAULT NULL,
+  `deleted_at` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pasa_articles
 -- ----------------------------
-INSERT INTO `pasa_articles` VALUES ('2', '文章标题', '文章描述', '关键字1,关键字2,关键字3', '/upload/20170916/1e915c70dbb9d3e8a07bede7b64e4cff.png', '<p><img src=\"/upload/image/20170916/1505555254.png\" title=\"1505555254.png\" alt=\"QQ截图20170916174651.png\"/></p><p>测试文章内容</p><p>测试内容</p>', '2017-09-16 17:47:44');
-INSERT INTO `pasa_articles` VALUES ('3', '1', '2', '3', '', '<p>2</p>', '2019-03-02 13:00:22');
-INSERT INTO `pasa_articles` VALUES ('4', '1', '2', '3', '', '<p>212121</p>', '2019-03-02 13:00:34');
-INSERT INTO `pasa_articles` VALUES ('5', '1', '2', '3', '/upload/20190302/8e34c5cfce44e4db260ffa7d37b852cc.jpg', '<p>21</p>', '2019-03-02 14:43:00');
-INSERT INTO `pasa_articles` VALUES ('6', '1', '2', '3,asd,asdasd,asddas,dsads,dsadas,asdasddas,dasadsasd,dasasd,asdasdasd,asdsad,asdasdads', '/upload/20190302/f7c9f1352083f78e37aff0cd1f140baf.jpg', '<p>21212asdasdasda</p>', '2019-03-02 14:44:14');
+INSERT INTO `pasa_articles` VALUES ('1', 'Pasalaravel基于laravel5.7开发通用后台管理', 'Pasalaravel基于laravel5.7开发通用后台管理', '/uploads/201903250336428328.jpg', '<p>Pasalaravel基于laravel5.7开发通用后台管理</p><p><img src=\"/uploads/201903250843002807.JPG\" style=\"max-width:100%;\"></p>', '1553485003', '1553503382', null);
 
 -- ----------------------------
 -- Table structure for pasa_banner
@@ -181,7 +180,7 @@ INSERT INTO `pasa_node` VALUES ('17', '编辑节点', 'node', 'edit', '1', '15',
 INSERT INTO `pasa_node` VALUES ('18', '删除节点', 'node', 'delete', '1', '15', '', null, null, null);
 INSERT INTO `pasa_node` VALUES ('19', '文章管理', '#', '#', '2', '0', 'fa fa-book', null, null, null);
 INSERT INTO `pasa_node` VALUES ('20', '文章列表', 'articles', 'index', '2', '19', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('21', '添加文章', 'articles', 'add', '1', '19', '', null, null, null);
+INSERT INTO `pasa_node` VALUES ('21', '添加文章', 'articles', 'add', '2', '19', '', null, null, null);
 INSERT INTO `pasa_node` VALUES ('22', '编辑文章', 'articles', 'edit', '1', '19', '', null, null, null);
 INSERT INTO `pasa_node` VALUES ('23', '删除文章', 'articles', 'delete', '1', '19', '', null, null, null);
 INSERT INTO `pasa_node` VALUES ('24', '上传图片', 'articles', 'uploadImg', '1', '19', '', null, null, null);

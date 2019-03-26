@@ -6,6 +6,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
+
 PasaLarave基于laravel5.7和H+ 后台主题UI开发的通用后台管理系统
 
 安装指导：配置一个域名指向public目录，修改.env配置文件
@@ -33,6 +34,8 @@ DB_PASSWORD=root#数据库密码
 权限的分配
 
 文章增删改查(集成wangEditor编辑器)
+
+后台开发指导:按照分类管理来做增删改查,目前只有分类管理代码是封装好点，其他管理没有封装但也不需要修改.
 
 
 后台界面截图

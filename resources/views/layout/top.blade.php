@@ -31,3 +31,4 @@
     @endif
 </script>
 @yield('script')
+<script src="{{asset('/static/admin/js')}}/jquery.min.js?v=2.1.4"></script>

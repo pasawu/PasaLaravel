@@ -69,6 +69,23 @@ class AdminBaseController extends Controller
     }
 
     /**
+     * 参数获取及过滤
+     * @param array $params
+     * @return array
+     */
+    public function _getParams($params=[]){
+        if(empty($params)){
+            return [];
+        }
+        $return_datas = [];
+        foreach ($params as $param) {
+                //获取return_参数
+                $return_datas[$param[0]] = $this->request->input($param[0], $param[1]);
+        }
+        return $return_datas;
+    }
+
+    /**
      * 返回json
      * @param array $data 数据
      * @return \Illuminate\Http\JsonResponse

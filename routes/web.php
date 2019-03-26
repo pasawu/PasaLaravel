@@ -69,4 +69,10 @@ Route::group(['middleware' => ['CheckAdminLogin']], function () {
     Route::any('admin/articles/edit/{id}', 'Admin\ArticlesController@edit');
     Route::any('admin/articles/delete/{id}', 'Admin\ArticlesController@delete');
 
+    //案例分类
+    Route::any('admin/case_category/index', 'Admin\CaseCategoryController@index');
+    Route::any('admin/case_category/add', 'Admin\CaseCategoryController@add');
+    Route::any('admin/case_category/edit/{id}', 'Admin\CaseCategoryController@edit');
+    Route::any('admin/case_category/delete/{id}', 'Admin\CaseCategoryController@delete');
+
 });

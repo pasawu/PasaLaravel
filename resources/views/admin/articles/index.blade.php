@@ -1,4 +1,4 @@
-@extends('layout.top')
+@include('layout.top')
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
     <!-- Panel Other -->

@@ -1,4 +1,4 @@
-@extends('layout.top')
+@include('layout.top')
 <script src="{{asset('/static/admin/js')}}/jquery.min.js?v=2.1.4"></script>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">

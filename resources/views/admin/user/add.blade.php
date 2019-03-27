@@ -1,4 +1,4 @@
-@extends('layout.top')
+@include('layout.top')
         <!DOCTYPE html>
 <html>
 <head>

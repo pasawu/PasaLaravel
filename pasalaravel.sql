@@ -10,10 +10,76 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2019-03-25 16:43:16
+Date: 2019-03-27 16:21:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for official_card_category
+-- ----------------------------
+DROP TABLE IF EXISTS `official_card_category`;
+CREATE TABLE `official_card_category` (
+  `id` int(30) NOT NULL AUTO_INCREMENT COMMENT '帖子表',
+  `name` varchar(255) DEFAULT NULL COMMENT '帖子分类名称',
+  `sort` int(30) DEFAULT NULL COMMENT '排序',
+  `created_at` varchar(255) DEFAULT NULL,
+  `updated_at` varchar(255) DEFAULT NULL,
+  `deleted_at` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='帖子表';
+
+-- ----------------------------
+-- Records of official_card_category
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for official_cases
+-- ----------------------------
+DROP TABLE IF EXISTS `official_cases`;
+CREATE TABLE `official_cases` (
+  `id` int(30) NOT NULL AUTO_INCREMENT COMMENT '案例表',
+  `name` varchar(255) DEFAULT NULL COMMENT '名称',
+  `category_1` int(2) DEFAULT NULL COMMENT '一级分类',
+  `category_2` int(2) DEFAULT NULL COMMENT '二级分类',
+  `image` varchar(255) DEFAULT NULL COMMENT '封面图',
+  `created_at` varchar(255) DEFAULT NULL,
+  `updated_at` varchar(255) DEFAULT NULL,
+  `deleted_at` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='案例表';
+
+-- ----------------------------
+-- Records of official_cases
+-- ----------------------------
+INSERT INTO `official_cases` VALUES ('1', '1', '1', '1', null, '1553669757', '1553669757', null);
+INSERT INTO `official_cases` VALUES ('2', '12', '2', '2', '/uploads/201903270657384022.jpg', '1553669859', '1553670042', null);
+
+-- ----------------------------
+-- Table structure for official_case_category
+-- ----------------------------
+DROP TABLE IF EXISTS `official_case_category`;
+CREATE TABLE `official_case_category` (
+  `id` int(30) NOT NULL AUTO_INCREMENT COMMENT '案例分类表',
+  `name` varchar(255) DEFAULT NULL COMMENT '分类名称',
+  `thumb` varchar(255) DEFAULT NULL COMMENT '分类图片',
+  `parentid` int(30) DEFAULT '0' COMMENT '父ID',
+  `displayorder` int(30) DEFAULT '0' COMMENT '排序',
+  `level` int(30) DEFAULT '1' COMMENT '分类等级',
+  `created_at` varchar(255) DEFAULT NULL,
+  `updated_at` varchar(255) DEFAULT NULL,
+  `deleted_at` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='案例分类表';
+
+-- ----------------------------
+-- Records of official_case_category
+-- ----------------------------
+INSERT INTO `official_case_category` VALUES ('1', '服装鞋包', '/uploads/201903260856065276.jpg', '0', '1', '1', '1553584418', '1553590604', null);
+INSERT INTO `official_case_category` VALUES ('2', '食品生鲜', '/uploads/201903260713355365.JPG', '0', '1', '1', '1553584418', '1553593723', null);
+INSERT INTO `official_case_category` VALUES ('3', '餐饮美食', '/uploads/201903260715157237.jpg', '0', '1', '1', '1553584517', '1553593736', null);
+INSERT INTO `official_case_category` VALUES ('7', '软件开发', '/uploads/201903260949104599.jpg', '0', '1', '1', '1553593752', '1553593752', null);
+INSERT INTO `official_case_category` VALUES ('8', '微信小程序', '/uploads/201903260951296916.jpg', '7', '2', '2', '1553593892', '1553593892', null);
 
 -- ----------------------------
 -- Table structure for official_user
@@ -21,19 +87,22 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `official_user`;
 CREATE TABLE `official_user` (
   `id` int(255) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `name` varchar(255) DEFAULT NULL COMMENT '用户名',
   `mobile` varchar(11) DEFAULT NULL COMMENT '手机号码',
+  `avatar` varchar(255) DEFAULT NULL COMMENT '头像',
   `password` varchar(255) DEFAULT NULL COMMENT '密码',
   `created_at` varchar(255) DEFAULT NULL,
   `updated_at` varchar(255) DEFAULT NULL,
   `deleted_at` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of official_user
 -- ----------------------------
-INSERT INTO `official_user` VALUES ('1', '18111111111', 'b59c67bf196a4758191e42f76670ceba', '1552890335', '1553503357', null);
-INSERT INTO `official_user` VALUES ('2', '18888888888', 'c4ca4238a0b923820dcc509a6f75849b', '1552890341', '1553503347', null);
+INSERT INTO `official_user` VALUES ('1', null, '18111111111', null, 'b59c67bf196a4758191e42f76670ceba', '1552890335', '1553503357', null);
+INSERT INTO `official_user` VALUES ('2', null, '18888888888', null, 'c4ca4238a0b923820dcc509a6f75849b', '1552890341', '1553503347', null);
+INSERT INTO `official_user` VALUES ('5', '1', '1', '/uploads/201903270747342864.JPG', 'c4ca4238a0b923820dcc509a6f75849b', '1553672822', '1553672856', null);
 
 -- ----------------------------
 -- Table structure for pasa_admin
@@ -59,7 +128,7 @@ CREATE TABLE `pasa_admin` (
 -- ----------------------------
 -- Records of pasa_admin
 -- ----------------------------
-INSERT INTO `pasa_admin` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '/uploads/201903180329271036.JPG', '32', '127.0.0.1', '1553503216', 'admin', '1', '1', null, '1553503216', null);
+INSERT INTO `pasa_admin` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '/uploads/201903180329271036.JPG', '36', '127.0.0.1', '1553666595', 'admin', '1', '1', null, '1553666595', null);
 INSERT INTO `pasa_admin` VALUES ('2', '1', '64d07a30f56ef59c79943ce26532c9e3', '/uploads/201903171035096569.JPG', '7', '127.0.0.1', '1552821020', '1', '1', '1', null, '1552821020', null);
 INSERT INTO `pasa_admin` VALUES ('3', 'pasawu', 'd36ddfa2bf8c74f90bbd6747f152d200', '/uploads/201903171035096569.JPG', '6', '127.0.0.1', '1552877639', '123456', '1', '2', null, '1552877639', null);
 INSERT INTO `pasa_admin` VALUES ('4', '1', '1', '/uploads/201903171035096569.JPG', '0', '', '0', '1', '0', '1', '1552809053', '1552809053', '1552720085');
@@ -159,40 +228,46 @@ CREATE TABLE `pasa_node` (
   `updated_at` varchar(255) DEFAULT NULL,
   `deleted_at` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of pasa_node
 -- ----------------------------
-INSERT INTO `pasa_node` VALUES ('1', '用户管理', '#', '#', '2', '0', 'fa fa-users', null, null, null);
-INSERT INTO `pasa_node` VALUES ('2', '管理员管理', 'admin', 'index', '2', '1', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('3', '添加管理员', 'admin', 'add', '1', '2', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('4', '编辑管理员', 'admin', 'edit', '1', '2', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('5', '删除管理员', 'admin', 'delete', '1', '2', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('6', '角色管理', 'role', 'index', '2', '1', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('7', '添加角色', 'role', 'add', '1', '6', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('8', '编辑角色', 'role', 'edit', '1', '6', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('9', '删除角色', 'role', 'delete', '1', '6', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('10', '分配权限', 'role', 'giveaccess', '1', '6', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('15', '节点管理', 'node', 'index', '2', '1', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('16', '添加节点', 'node', 'add', '1', '15', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('17', '编辑节点', 'node', 'edit', '1', '15', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('18', '删除节点', 'node', 'delete', '1', '15', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('19', '文章管理', '#', '#', '2', '0', 'fa fa-book', null, null, null);
-INSERT INTO `pasa_node` VALUES ('20', '文章列表', 'articles', 'index', '2', '19', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('21', '添加文章', 'articles', 'add', '2', '19', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('22', '编辑文章', 'articles', 'edit', '1', '19', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('23', '删除文章', 'articles', 'delete', '1', '19', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('24', '上传图片', 'articles', 'uploadImg', '1', '19', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('25', '个人中心', '#', '#', '1', '0', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('26', '编辑信息', 'profile', 'index', '1', '25', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('27', '编辑头像', 'profile', 'headedit', '1', '25', '', null, null, null);
-INSERT INTO `pasa_node` VALUES ('28', '上传头像', 'profile', 'uploadheade', '1', '25', '', null, null, null);
+INSERT INTO `pasa_node` VALUES ('1', '用户管理', '#', '#', '2', '0', 'fa fa-users', '1552881243', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('2', '管理员管理', 'admin', 'index', '2', '1', '', '1552881507', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('3', '添加管理员', 'admin', 'add', '1', '2', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('4', '编辑管理员', 'admin', 'edit', '1', '2', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('5', '删除管理员', 'admin', 'delete', '1', '2', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('6', '角色管理', 'role', 'index', '2', '1', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('7', '添加角色', 'role', 'add', '1', '6', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('8', '编辑角色', 'role', 'edit', '1', '6', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('9', '删除角色', 'role', 'delete', '1', '6', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('10', '分配权限', 'role', 'giveaccess', '1', '6', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('15', '节点管理', 'node', 'index', '2', '1', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('16', '添加节点', 'node', 'add', '1', '15', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('17', '编辑节点', 'node', 'edit', '1', '15', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('18', '删除节点', 'node', 'delete', '1', '15', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('19', '文章管理', '#', '#', '2', '0', 'fa fa-book', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('20', '文章列表', 'articles', 'index', '2', '19', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('21', '添加文章', 'articles', 'add', '2', '19', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('22', '编辑文章', 'articles', 'edit', '1', '19', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('23', '删除文章', 'articles', 'delete', '1', '19', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('24', '上传图片', 'articles', 'uploadImg', '1', '19', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('25', '个人中心', '#', '#', '1', '0', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('26', '编辑信息', 'profile', 'index', '1', '25', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('27', '编辑头像', 'profile', 'headedit', '1', '25', '', '1552881530', '1552881243', null);
+INSERT INTO `pasa_node` VALUES ('28', '上传头像', 'profile', 'uploadheade', '1', '25', '', '1552881530', '1552881243', null);
 INSERT INTO `pasa_node` VALUES ('39', '用户管理', '#', '#', '2', '0', 'fa fa-book', '1552881243', '1552881243', null);
 INSERT INTO `pasa_node` VALUES ('40', '添加用户', 'user', 'add', '2', '39', null, '1552881507', '1552881507', null);
 INSERT INTO `pasa_node` VALUES ('41', '用户列表', 'user', 'index', '2', '39', null, '1552881530', '1552881530', null);
 INSERT INTO `pasa_node` VALUES ('42', '编辑用户', 'user', 'edit', '1', '41', '', '1552881530', '1552881530', null);
 INSERT INTO `pasa_node` VALUES ('43', '删除用户', 'user', 'delete', '1', '41', '', '1552881530', '1552881530', null);
+INSERT INTO `pasa_node` VALUES ('44', '案例分类', '#', '#', '2', '0', 'fa fa-book', '1553582079', '1553582079', null);
+INSERT INTO `pasa_node` VALUES ('49', '添加案例分类', 'case_category', 'add', '2', '44', '', '1552881507', '1552881507', null);
+INSERT INTO `pasa_node` VALUES ('50', '案例分类列表', 'case_category', 'index', '2', '44', '', '1552881530', '1552881530', null);
+INSERT INTO `pasa_node` VALUES ('51', '编辑案例分类', 'case_category', 'edit', '1', '50', '', '1552881530', '1552881530', null);
+INSERT INTO `pasa_node` VALUES ('52', '删除案例分类', 'case_category', 'delete', '1', '50', '', '1552881530', '1552881530', null);
+
 
 -- ----------------------------
 -- Table structure for pasa_role
